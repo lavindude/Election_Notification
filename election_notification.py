@@ -1,10 +1,21 @@
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import json
-import musicalbeeps
+from win10toast import ToastNotifier
+
+toaster = ToastNotifier()
 
 AZ_Biden = 0
 AZ_Trump = 0
+
+GA_Biden = 0
+GA_Trump = 0
+
+NV_Biden = 0
+NV_Trump = 0
+
+NC_Biden = 0
+NC_Trump = 0
 
 PA_Biden = 0
 PA_Trump = 0
@@ -24,20 +35,52 @@ while True:
                 print()
                 AZ_Biden = item['candidates'][0]['votes']
                 AZ_Trump = item['candidates'][1]['votes']
-                player = musicalbeeps.Player(volume = 0.3, mute_output = False)
-                player.play_note("A", 0.2)
-                player.play_note("A", 0.2)
+                concatenated = "Biden: " + str(item['candidates'][0]['votes']) + "   Trump: " + str(item['candidates'][1]['votes'])
+                toaster.show_toast("Arizona:", concatenated)
         
         elif item['race_id'] == "PA-G-P-2020-11-03":
             if PA_Biden != item['candidates'][0]['votes']:
+                print("Pennsylvania:")
                 print("Biden:", item['candidates'][0]['votes'])
                 print("Trump:", item['candidates'][1]['votes'])
                 print()
                 PA_Biden = item['candidates'][0]['votes']
                 PA_Trump = item['candidates'][1]['votes']
-                player = musicalbeeps.Player(volume = 0.3, mute_output = False)
-                player.play_note("A", 0.2)
-                player.play_note("A", 0.2)
+                concatenated = "Biden: " + str(item['candidates'][0]['votes']) + "   Trump: " + str(item['candidates'][1]['votes'])
+                toaster.show_toast("Pennsylvania:", concatenated)
+
+        elif item['race_id'] == "GA-G-P-2020-11-03":
+            if GA_Biden != item['candidates'][0]['votes']:
+                print("Georgia:")
+                print("Biden:", item['candidates'][0]['votes'])
+                print("Trump:", item['candidates'][1]['votes'])
+                print()
+                GA_Biden = item['candidates'][0]['votes']
+                GA_Trump = item['candidates'][1]['votes']
+                concatenated = "Biden: " + str(item['candidates'][0]['votes']) + "   Trump: " + str(item['candidates'][1]['votes'])
+                toaster.show_toast("Georgia:", concatenated)
+
+        elif item['race_id'] == "NV-G-P-2020-11-03":
+            if NV_Biden != item['candidates'][0]['votes']:
+                print("Nevada:")
+                print("Biden:", item['candidates'][0]['votes'])
+                print("Trump:", item['candidates'][1]['votes'])
+                print()
+                NV_Biden = item['candidates'][0]['votes']
+                NV_Trump = item['candidates'][1]['votes']
+                concatenated = "Biden: " + str(item['candidates'][0]['votes']) + "   Trump: " + str(item['candidates'][1]['votes'])
+                toaster.show_toast("Nevada:", concatenated)
+
+        elif item['race_id'] == "NC-G-P-2020-11-03":
+            if NC_Biden != item['candidates'][0]['votes']:
+                print("North Carolina:")
+                print("Biden:", item['candidates'][0]['votes'])
+                print("Trump:", item['candidates'][1]['votes'])
+                print()
+                NC_Biden = item['candidates'][0]['votes']
+                NC_Trump = item['candidates'][1]['votes']
+                concatenated = "Biden: " + str(item['candidates'][0]['votes']) + "   Trump: " + str(item['candidates'][1]['votes'])
+                toaster.show_toast("North Carolina:", concatenated)
     
 
 
